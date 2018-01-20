@@ -1,0 +1,103 @@
+Exam 3
+10/27/17
+Ch. 9  Time Complexity
+Ch. 12 Algorithm Analysis
+
+
+Bubble Sort (see lab19; Gaddis Ch.8)
+- compares adjacent elements multiple times through
+- only guarantees that largest element is in position after 1 pass
+	- exclude largest element from future passes
+- if you start off with n elements, you make a maximum of n-1 passes
+ex. 
+        83 98 28 19 46  1 35
+Pass 1: 83 28 19 46  1 35
+Pass 2: 28 19 46  1 35
+Pass 3: 19 28  1 35
+Pass 4: 19  1 28
+Pass 5:  1 19
+
+
+Linear Search (see Gaddis Ch.8)
+
+
+Binary Search (see Gaddis Ch.8)
+- always check if(first > last) to begin;
+
+
+Time Complexity (see Childs Ch.9)
+- Larger amounts of data running through an algorithm increases time to compute
+	- Behavior isn't necessarily linear; can be quadratic or logarithmic
+- The best possible time complexity is theta(1)
+- O(n) gives the Order of the algorithm (Slowest possible performance of a program)
+ex.
+1   i = 0;
+2   found = false;
+3   while ( ( i < size ) && itemToFind > A[ i ] ) 
+4       i++;
+5
+6   if ( itemToFind == A[ i ] )
+7       found = true;
+	-if itemToFind is the first element in the array, algorithm runs theta(1) times
+	-if not, algorithm runs theta(n) times
+	-this gives us a big-O of O(n)
+ex.
+	int x=1;
+	for(...; x<=n; x++)
+	{ ... }
+	// O(n)
+	
+	int x=1;
+	for(...; x<=n; x=x+2)
+	{ ... }
+	// O(2n) -> O(n)
+	
+	int x=1;
+	for(...; x<=n; x=x*2)
+	{ ... }
+	// O(log(n))
+	n  x          # of times  log2(n)
+	              through loop   
+	1  1,2        1           0
+	2  1,2,4      2           1
+	4  1,2,4,8    3           2
+	8  1,2,4,8,16 4           3
+	16 1,2,...,32 5           4
+- in CS, lg(n) is often used for log2(n)
+
+
+Big-O Notation
+ex.
+void f(int *array, int n){
+	for(int i=0; i<n; ++i)               //A = O(n)+(B*C) = O(n)+O(n^2) = O(n^2)
+		cout << *(array+i)<<endl;
+		
+	for(int i=0; i<n; ++i)               //B = O(n)+C = O(n^2)
+		for(int j=0; j<n; ++j)           //C = O(n)
+			array[i]=array[i]*array[j];
+- In order by dominance
+	1  x^x
+	2  5^x
+	3  3^x
+	4  x^2*log(x)
+	5  x^2
+	6  x*log(x)
+	7  x
+	8  log2(x)
+	9  log4(x)
+	10 3!
+- NOTE: 3! is constant (be sure term contains an x)
+- NOTE: No ties will be on the test
+
+
+Class Templates (see Gaddis Ch. )
+- const T& value = T()
+	- T() calls the default constructor for a class of type T
+
+
+Misc.
+- only pointer operations are
+	- adding an int to a ptr
+	- subtracting an int from a ptr
+	- subtracting 2 ptrs to get a length
+- lab23 needs 2 loops if the data is unsorted, but it only uses 1 loop if the data is sorted
